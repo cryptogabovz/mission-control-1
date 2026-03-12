@@ -88,12 +88,12 @@ function buildCsp(nonce: string, googleEnabled: boolean): string {
     `base-uri 'self'`,
     `object-src 'none'`,
     `frame-ancestors 'none'`,
-    `script-src 'self' 'nonce-${nonce}' 'unsafe-inline' 'strict-dynamic' blob:${googleEnabled ? ' https://accounts.google.com' : ''}`,
+    `script-src 'self' 'nonce-${nonce}' 'unsafe-inline' 'unsafe-eval' blob: https://cdn.jsdelivr.net ${googleEnabled ? ' https://accounts.google.com' : ''}`,
     `style-src 'self' 'nonce-${nonce}' 'unsafe-inline'`,
     `connect-src 'self' ws: wss: http://127.0.0.1:* http://localhost:* https://cdn.jsdelivr.net`,
-    `img-src 'self' data: blob:${googleEnabled ? ' https://*.googleusercontent.com https://lh3.googleusercontent.com' : ''}`,
+    `img-src 'self' data: blob: ${googleEnabled ? ' https://*.googleusercontent.com https://lh3.googleusercontent.com' : ''}`,
     `font-src 'self' data:`,
-    `frame-src 'self'${googleEnabled ? ' https://accounts.google.com' : ''}`,
+    `frame-src 'self' ${googleEnabled ? ' https://accounts.google.com' : ''}`,
     `worker-src 'self' blob:`,
   ].join('; ')
 }
